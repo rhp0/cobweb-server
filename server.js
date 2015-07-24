@@ -1,20 +1,51 @@
-  var SerialPort  = require('serialport2').SerialPort;
-   var portName = 'COM3';
-   
+
+/**
+ * Module dependencies.
+ */
+var express = require('express');
+var http = require('http');
+var path = require('path');
+var app = express();
+var serveIndex = require('serve-index'); //from bb
+
+// all environments
+app.set('port', process.env.PORT || 5000);
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.set('view engine', 'ejs');
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/ftp', serveIndex('public/ftp', {'icons': true, 'view': 'details'}));
+
+// development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
+
+//create the server
+var server = http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
+
+//var datafileName = '/var/volatile/datalog';
+var datafileName = '/home/qingping/filetotail';
+Tail = require('tail').Tail;
+tail = new Tail(datafileName);
+tail.on("error", function(error) {
+  console.log('nodetailERROR: ', error);
+});
+
    var io = require('socket.io').listen(8000); // server listens for socket.io communication at port 8000
-   io.set('log level', 1); // disables debugging. this is optional. you may remove it if desired.
-   
-   var sp = new SerialPort(); // instantiate the serial port.
-   sp.open(portName, { // portName is instatiated to be COM3, replace as necessary
-      baudRate: 9600, // this is synced to what was set for the Arduino Code
-      dataBits: 8, // this is the default for Arduino serial communication
-      parity: 'none', // this is the default for Arduino serial communication
-      stopBits: 1, // this is the default for Arduino serial communication
-      flowControl: false // this is the default for Arduino serial communication
-   });
-   
+ //  io.set('log level', 1); // disables debugging. this is optional. you may remove it if desired.
+
+
    io.sockets.on('connection', function (socket) {
-       // If socket.io receives message from the client browser then 
+       // If socket.io receives message from the client browser then
        // this call back will be executed.
        socket.on('message', function (msg) {
            console.log(msg);
@@ -24,18 +55,12 @@
            console.log('disconnected');
        });
    });
-   
-   var cleanData = ''; // this stores the clean data
-   var readData = '';  // this stores the buffer
-   sp.on('data', function (data) { // call back when data is received
-       readData += data.toString(); // append data to buffer
-       // if the letters 'A' and 'B' are found on the buffer then isolate what's in the middle
-       // as clean data. Then clear the buffer. 
-       if (readData.indexOf('B') >= 0 && readData.indexOf('A') >= 0) {
-           cleanData = readData.substring(readData.indexOf('A') + 1, readData.indexOf('B'));
-           readData = '';
-           io.sockets.emit('message', cleanData);
-       }
-   });
-   
+
+
+tail.on("line", function(data) {
+ io.sockets.emit('message', data);
+  console.log(data);
+});
+
+
 

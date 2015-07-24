@@ -30,11 +30,11 @@
                // Options for Flot plot
                var options = {
                    series: { shadowSize: 0 }, // drawing is faster without shadows
-                   yaxis: { min: 0, max: 100 },
+                   yaxis: { min: 10, max: 15 },
                    xaxis: { show: false }
                };
                var plot1 = $.plot($("#placeholder1"), [ getInitData(res1) ], options);
-               var plot2 = $.plot($("#placeholder2"), [ getInitData(res2) ], options);
+               var plot2 = $.plot($("#placeholder2"), [ getInitData(res2) ], {series: {shadowSize: 0}, yaxis: {min: -2000, max: 200},xaxis: {show: false}});
                
                // Update the JQuery UI Progress Bar
                //$( "#progressbar" ).progressbar({
@@ -54,15 +54,15 @@
 
                        // Convert value to integer
                        //var val = ((parseInt(msg) / 1023)*100);
-                       var vals = msg.split(',');
+                       var vals = msg.substring(msg.indexOf('[') + 1,msg.indexOf(']') - 1).split('\t');
                        // update value spans
                        $('#message').html(msg);
-                       $('#host').html(host);
-                       $('#value1').html(vals[0]);
-                       $('#value2').html(vals[1]);
+                       $('#host').html(hostport);
+                       $('#value1').html(vals[1]);
+                       $('#value2').html(vals[2]);
 
                        // Push new value to Flot Plot
-                       res1.push([totalPoints, vals[0]]); // push on the end side
+                       res1.push([totalPoints, vals[1]]); // push on the end side
                        res1.shift(); // remove first value to maintain 300 points
                        // reinitialize the x axis data points to 0 to 299.
                        for (i=0;i<totalPoints;i++) { res1[i][0] = i; }
@@ -72,7 +72,7 @@
 
 
                        // Push new value to Flot Plot
-                       res2.push([totalPoints, vals[1]]); // push on the end side
+                       res2.push([totalPoints, vals[2]]); // push on the end side
                        res2.shift(); // remove first value to maintain 300 points
                        // reinitialize the x axis data points to 0 to 299.
                        for (i=0;i<totalPoints;i++) { res2[i][0] = i; }

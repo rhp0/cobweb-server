@@ -1,0 +1,32 @@
+{
+  "name": "cobweb",
+  "version": "0.0.1",
+  "description": "aquaculture buoy webserver",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "ejs": "^0.7.2",
+    "express": "^3.4.8",
+    "file-tail": "^0.3.0",
+    "serve-index": "^1.7.1",
+    "socket.io": "^0.9.17",
+    "tail": "^0.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rhp0/bobs-buoys.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rhp0/bobs-buoys/issues"
+  },
+  "homepage": "https://github.com/rhp0/bobs-buoys"
+}
