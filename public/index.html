@@ -1,0 +1,106 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Flot Examples: Real-time updates</title>
+    <!-- CSS files -->
+    <link href="stylesheets/pure-min.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/base.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/chart-modules.css" rel="stylesheet" type="text/css">
+
+    <!--[if lte IE 8]><script type="text/javascript" src="javascripts/excanvas.min.js"></script><![endif]-->
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.flot.min.js"></script>
+    <script type="text/javascript" src="javascripts/socket.io.js"></script>
+    <script type="text/javascript" src="javascripts/client-server.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+               // Initialize Flot data points
+               var totalPoints = 300;
+               var res1 = [];
+               var res2 = [];
+               function getInitData(res) {
+                   // zip the generated y values with the x values
+                   for (var i = 0; i < totalPoints; ++i){
+                       res.push([i, 0]);
+                   }
+                   return res;
+               }
+  
+               // Options for Flot plot
+               var options = {
+                   series: { shadowSize: 0 }, // drawing is faster without shadows
+                   yaxis: { min: 10, max: 15 },
+                   xaxis: { show: false }
+               };
+               var plot1 = $.plot($("#placeholder1"), [ getInitData(res1) ], options);
+               var plot2 = $.plot($("#placeholder2"), [ getInitData(res2) ], {series: {shadowSize: 0}, yaxis: {min: -2000, max: 200},xaxis: {show: false}});
+               
+               // Update the JQuery UI Progress Bar
+               //$( "#progressbar" ).progressbar({
+               //    value: 0
+               //});
+   
+               //Get the URL to hand into the connect call
+               var http = location.protocol;
+               var slashes = http.concat("//");
+               var host = slashes.concat(window.location.hostname);
+               var hostport = host.concat(":8000");
+
+               //var socket = io.connect('http://192.168.1.8:8000');
+               var socket = io.connect(hostport);
+               socket.on('connect', function () {
+                   socket.on('message', function (msg) {
+
+                       // Convert value to integer
+                       //var val = ((parseInt(msg) / 1023)*100);
+                       var vals = msg.substring(msg.indexOf('[') + 1,msg.indexOf(']') - 1).split('\t');
+                       // update value spans
+                       $('#message').html(msg);
+                       $('#host').html(hostport);
+                       $('#value1').html(vals[1]);
+                       $('#value2').html(vals[2]);
+
+                       // Push new value to Flot Plot
+                       res1.push([totalPoints, vals[1]]); // push on the end side
+                       res1.shift(); // remove first value to maintain 300 points
+                       // reinitialize the x axis data points to 0 to 299.
+                       for (i=0;i<totalPoints;i++) { res1[i][0] = i; }
+                       // Redraw the plot
+                       plot1.setData([ res1 ]);
+                       plot1.draw();
+
+
+                       // Push new value to Flot Plot
+                       res2.push([totalPoints, vals[2]]); // push on the end side
+                       res2.shift(); // remove first value to maintain 300 points
+                       // reinitialize the x axis data points to 0 to 299.
+                       for (i=0;i<totalPoints;i++) { res2[i][0] = i; }
+                       // Redraw the plot
+                       plot2.setData([ res2 ]);
+                       plot2.draw();
+                       
+                       // Update JQuery UI progress bar.
+                      //$( "#progressbar" ).progressbar({
+                      //     value: val
+                      });
+                   });
+               });
+           
+           </script>
+       </head>
+
+
+       <body>
+           <div role="main">
+               Latest Values: <span id="message"></span><br/>
+              host: <span id="host"></span><br/>
+               <div id="progressbar" style="width:600px;height:50px;"></div><br/>
+		Channel 1: <span id="value1"></span><br/>
+               <div id="placeholder1" style="width:600px;height:300px;"></div><br/>
+		Channel 2: <span id="value2"></span><br/>
+               <div id="placeholder2" style="width:600px;height:300px;"></div><br/>
+           </div>
+       </body>
+   </html>
+
