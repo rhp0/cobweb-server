@@ -14,11 +14,12 @@
 
 <script type="text/javascript">
 
+    $(document).ready(function(){plotTimeSeries('col1stats.txt')});
 
-    $(function () {
+    function plotTimeSeries(filename) {
         var seriesOptions = [];
 
-        $.get('ftp/summary/col3.stats', function(csv) {
+        $.get('ftp/summary/' + filename, function(csv) {
             var d = csv.split('\n'); //this includes an extra null after the last \n
             var nrow = d.length -1 ; // so we decrement nrow
             for(var i=0;i<nrow;i++)
@@ -90,7 +91,7 @@
             $('#container').highcharts('StockChart',options);
         });
 
-    });
+    };
 
 
 </script>
@@ -99,13 +100,13 @@
 
 <body>
     <div role="main">
-        <select id="colchoice"  onChange="download(this.value)" >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
+        <select id="colchoice"  onChange="plotTimeSeries(this.value)" >
+            <option>col1stats.txt</option>
+            <option>col2stats.txt</option>
+            <option>col3stats.txt</option>
+            <option>col4stats.txt</option>
+            <option>col5stats.txt</option>
+            <option>col6stats.txt</option>
         </select><br/>
         <div id="container" style="width:100%; height:500px;"></div>
         <span id='csvtest'></span>
