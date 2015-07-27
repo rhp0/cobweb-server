@@ -1,0 +1,114 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Burst Statistics</title>
+<!-- CSS files -->
+<link href="stylesheets/pure-min.css" rel="stylesheet" type="text/css">
+<link href="stylesheets/base.css" rel="stylesheet" type="text/css">
+<link href="stylesheets/chart-modules.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="javascripts/jquery.min.js"></script>
+<script type="text/javascript" src="javascripts/highstock.js"></script>
+
+
+<script type="text/javascript">
+
+
+    $(function () {
+        var seriesOptions = [];
+
+        $.get('ftp/summary/col3.stats', function(csv) {
+            var d = csv.split('\n'); //this includes an extra null after the last \n
+            var nrow = d.length -1 ; // so we decrement nrow
+            for(var i=0;i<nrow;i++)
+            {
+                d[i] = d[i].split('\t'); //leaves a null in the last element, just ignore it
+                // now d is a two dimensional array that contains csv file
+                //d[row index][column index]
+            }
+            var dmin=[], dq25=[],dmed=[],dq75=[],dmax=[],dmean=[];
+            for(var i=0;i<nrow;i++)
+            {
+                var t= parseFloat(d[i][0]) * 1000; //first csv col is time in sec, but we need msec
+                dmin.push([t, parseFloat(d[i][2])]); //second csv col (number of records) is not plotted
+                dq25.push([t,parseFloat(d[i][3])]);
+                dmed.push([t,parseFloat(d[i][4])]);
+                dq75.push([t,parseFloat(d[i][5])]);
+                dmax.push([t,parseFloat(d[i][6])]);
+                dmean.push([t,parseFloat(d[i][7])]);
+            }
+            seriesOptions[5]={name: 'mean', data: dmean, dashStyle: 'Solid', color: '#000000'};
+            seriesOptions[0]={name: 'max', data: dmax, dashStyle: 'Dot', color: '#00CC00'};
+            seriesOptions[1]={name: 'Q75', data: dq75, dashStyle: 'Dash', color: '#CC0000'};
+            seriesOptions[2]={name: 'med', data: dmed, dashStyle: 'LongDash', color: '#0000CC'};
+            seriesOptions[3]={name: 'Q25', data: dq25, dashStyle: 'Dash', color: '#CC0000'};
+            seriesOptions[4]={name: 'min', data: dmin, dashStyle: 'Dot', color: '#00CC00'};
+
+
+            var options=
+                {
+                    rangeSelector : {
+                        buttons: [{
+                            type: 'day',
+                            count: 1,
+                            text: '1d'
+                        }, {
+                            type: 'day',
+                            count: 3,
+                            text: '3d'
+                        }, {
+                            type: 'day',
+                            count: 7,
+                            text: '7d'
+                        }, {
+                            type: 'month',
+                            count: 1,
+                            text: '1m'
+                        }, {
+                            type: 'all',
+                            text: 'All'
+                        }],
+
+                        selected : 2,
+                        inputDateFormat: '%b %e %H:%M',
+                        inputEditDateFormat: '%m-%d %H:%M'
+                    },
+                    navigator: { baseSeries: 5},
+                    title : {text : '10 min burst statistics'},
+                    //yAxis: {endOnTick: true} ,
+                    //yAxis: {floor: null} ,
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+                        //valueDecimals: 2
+                    },
+
+
+                    series : seriesOptions
+                }
+            // Create the chart
+            $('#container').highcharts('StockChart',options);
+        });
+
+    });
+
+
+</script>
+</head>
+
+
+<body>
+    <div role="main">
+        <select id="colchoice"  onChange="download(this.value)" >
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+        </select><br/>
+        <div id="container" style="width:100%; height:500px;"></div>
+        <span id='csvtest'></span>
+    </div>
+</body>
+</html>
