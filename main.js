@@ -44,8 +44,8 @@
 //}
 //
 //////////////////////////////////////////
-var express    = require('express')
-var serveIndex = require('serve-index')
+var express    = require('express');
+var serveIndex = require('serve-index');
 var http = require('http');
 var path = require('path');
 var bodyParser      = require("body-parser");
@@ -59,7 +59,7 @@ app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.static('public'));
 // Serve URLs like /ftp/thing as public/ftp/thing
-app.use('/ftp', serveIndex(path.join(__dirname,'public/ftp'), {'icons': true}))
+app.use('/ftp', serveIndex(path.join(__dirname,'public/ftp'), {'icons': true}));
 //app.listen()
 /////////////////////////////////
 ///**
