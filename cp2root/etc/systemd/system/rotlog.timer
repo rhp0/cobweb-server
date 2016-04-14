@@ -1,0 +1,11 @@
+[Unit]
+Description=Run rotate_datalog.sh 10 minutely
+
+[Timer]
+OnCalendar=*-*-* *:00/10:00
+Unit=rotlog.service
+AccuracySec= 1sec
+
+[Install]
+WantedBy=timers.target
+

@@ -1,0 +1,7 @@
+[Unit]
+Description=rotlog
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rotate_datalog.sh 
+

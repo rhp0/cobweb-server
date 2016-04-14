@@ -1,0 +1,6 @@
+ cp -r /node_app_slot/cp2root/* /
+ chmod +x /usr/bin/rotate_datalog.sh
+ cd /home/root/sta
+ ./configure
+ make
+ make install

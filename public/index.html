@@ -51,7 +51,7 @@
                 var chch2=document.getElementById("chchoice2").selectedIndex;
                 // Convert value to integer
                 //var val = ((parseInt(msg) / 1023)*100);
-                var vals = msg.substring(msg.indexOf('[') + 1,msg.indexOf(']') - 1).split('\t');
+                var vals = msg.substring(msg.indexOf('[') + 1,msg.indexOf(']') - 1).split(',');
                 // update value spans
                 $('#message').html(msg);
                 $('#host').html(hostport);
@@ -83,6 +83,7 @@
                 //$( "#progressbar" ).progressbar({
                 //     value: val
             });
+            
         });
 
     });
@@ -97,22 +98,48 @@
         host: <span id="host"></span><br/>
         Channel
         <select id="chchoice1" >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
+            <option>1:msec</option>
+            <option>2:battV</option>
+            <option>3:battI</option>
+            <option>4:armAng</option>
+            <option>5:P kPa</option>
+            <option>6:red</option>
+            <option>7:green</option>
+            <option>8:blue</option>
+            <option>9:clear</option>
+            <option>10:Temp</option>
+            <option>11:Fluor</option>
+            <option>12:Re(I/V)</option>
+            <option>13:Im(I/V)</option>
+            <option>14:Re(off)</option>
+            <option>15:Im(off)r</option>
+            <option>16:Re(V)</option>
+            <option>17:Im(V)</option>
+            <option>18:Re(I)</option>
+            <option>19:Im(I)</option>
         </select>: <span id="value1"></span><br/>
         <div id="placeholder1" style="width:600px;height:300px;"></div><br/>
         Channel
         <select id="chchoice2" >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
+            <option>1:msec</option>
+            <option>2:battV</option>
+            <option>3:battI</option>
+            <option>4:armAng</option>
+            <option>5:P kPa</option>
+            <option>6:red</option>
+            <option>7:green</option>
+            <option>8:blue</option>
+            <option>9:clear</option>
+            <option>10:Temp</option>
+            <option>11:Fluor</option>
+            <option>12:Re(I/V)</option>
+            <option>13:Im(I/V)</option>
+            <option>14:Re(off)</option>
+            <option>15:Im(off)r</option>
+            <option>16:Re(V)</option>
+            <option>17:Im(V)</option>
+            <option>18:Re(I)</option>
+            <option>19:Im(I)</option>
         </select>: <span id="value2"></span><br/>
         <div id="placeholder2" style="width:600px;height:300px;"></div><br/>
         <a href="/ftp/summary" target="_blank"> Download summary stats for each channel </a><br/>
