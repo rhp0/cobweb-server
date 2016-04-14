@@ -59,7 +59,7 @@
                 $('#value2').html(vals[chch2]);
 
                 // Push new value to Flot Plot
-                res1.push([totalPoints, vals[chch1]]); // push on the end side
+                res1.push([totalPoints, parseFloat(vals[chch1])]); // push on the end side
                 res1.shift(); // remove first value to maintain 300 points
                 // reinitialize the x axis data points to 0 to 299.
                 for (i=0;i<totalPoints;i++) { res1[i][0] = i; }
@@ -70,7 +70,7 @@
 
 
                 // Push new value to Flot Plot XXX
-                res2.push([totalPoints, vals[chch2]]); // push on the end side
+                res2.push([totalPoints, parseFloat(vals[chch2])]); // push on the end side
                 res2.shift(); // remove first value to maintain 300 points
                 // reinitialize the x axis data points to 0 to 299.
                 for (i=0;i<totalPoints;i++) { res2[i][0] = i; }

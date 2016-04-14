@@ -14,7 +14,7 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function(){plotTimeSeries('col1stats.txt')});
+    $(document).ready(function(){plotTimeSeries('col12stats.txt')});
 
     function plotTimeSeries(filename) {
         var seriesOptions = [];
@@ -32,12 +32,12 @@
             for(var i=0;i<nrow;i++)
             {
                 var t= parseFloat(d[i][0]) * 1000; //first csv col is time in sec, but we need msec
-                dmin.push([t, parseFloat(d[i][2])]); //second csv col (number of records) is not plotted
-                dq25.push([t,parseFloat(d[i][3])]);
-                dmed.push([t,parseFloat(d[i][4])]);
-                dq75.push([t,parseFloat(d[i][5])]);
-                dmax.push([t,parseFloat(d[i][6])]);
-                dmean.push([t,parseFloat(d[i][7])]);
+                dmin.push([t,parseFloat($.trim(d[i][2]))]); //second csv col (number of records) is not plotted
+                dq25.push([t,parseFloat($.trim(d[i][3]))]);
+                dmed.push([t,parseFloat($.trim(d[i][4]))]);
+                dq75.push([t,parseFloat($.trim(d[i][5]))]);
+                dmax.push([t,parseFloat($.trim(d[i][6]))]);
+                dmean.push([t,parseFloat($.trim(d[i][7]))]);
             }
             seriesOptions[5]={name: 'mean', data: dmean, dashStyle: 'Solid', color: '#000000'};
             seriesOptions[0]={name: 'max', data: dmax, dashStyle: 'Dot', color: '#00CC00'};
@@ -49,9 +49,7 @@
 
             var options=
                 {
-                    rangeSelector : { digitalWrite(11, LOW);
-  digitalWrite(12, LOW);
- 
+                    rangeSelector : {
                         buttons: [{
                             type: 'day',
                             count: 1,

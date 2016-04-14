@@ -43,44 +43,57 @@
 //  app.use(errorHandler());
 //}
 //
-//
-
-/**
- * Module dependencies.
- */
-var express = require('express');
+//////////////////////////////////////////
+var express    = require('express')
+var serveIndex = require('serve-index')
 var http = require('http');
 var path = require('path');
-var app = express();
-var serveIndex = require('serve-index'); 
+var bodyParser      = require("body-parser");
+var methodOverride  = require("method-override");
 
-// all environments
+var app             = express();
 app.set('port', process.env.PORT || 5000);
-app.use(express.favicon());
-app.use(express.logger('dev'));
 app.set('view engine', 'ejs');
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
+//app.use(bodyParser());
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/ftp', serveIndex('public/ftp', {'icons': true, 'view': 'details'}));
-
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
+//app.use(express.static('public'));
+// Serve URLs like /ftp/thing as public/ftp/thing
+app.use('/ftp', serveIndex(path.join(__dirname,'public/ftp'), {'icons': true}))
+//app.listen()
+/////////////////////////////////
+///**
+// * Module dependencies.
+// */
+//var express = require('express');
+//var http = require('http');
+//var path = require('path');
+//var app = express();
+//var serveIndex = require('serve-index');
+//
+//// all environments
+//app.set('port', process.env.PORT || 5000);
+//app.use(express.favicon());
+//app.use(express.logger('dev'));
+//app.set('view engine', 'ejs');
+//app.use(express.json());
+//app.use(express.urlencoded());
+//app.use(express.methodOverride());
+//app.use(app.router);
+//app.use(express.static(path.join(__dirname, 'public')));
+//
+//app.use('/ftp', serveIndex('public/ftp', {'icons': true, 'view': 'details'}));
+//
+//
+//// development only
+//if ('development' == app.get('env')) {
+//  app.use(express.errorHandler());
+//}
 
 var server = http.createServer(app);
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-
-
-
-
 
 
 var datafileName = '/var/volatile/datalog';
@@ -110,7 +123,7 @@ tail.on("error", function(error) {
 
 tail.on("line", function(data) {
  io.sockets.emit('message', data);
-  console.log(data);
+  console.log('msg:' + data);
 });
 
 

@@ -15,8 +15,8 @@
         "name": "cobweb.xdk"
       },
       "cobweb.xdke": {
-        "previousModTime": 1460610650522,
-        "modified": 1460610650522,
+        "previousModTime": 1460647620750,
+        "modified": 1460647620750,
         "seen": true,
         "name": "cobweb.xdke"
       },
@@ -39,8 +39,8 @@
         "name": "originalserverexample.js"
       },
       "package.json": {
-        "previousModTime": 1460577712342,
-        "modified": 1460577712342,
+        "previousModTime": 1460617809606,
+        "modified": 1460617809606,
         "seen": true,
         "name": "package.json"
       },
@@ -69,14 +69,14 @@
         "name": "test"
       },
       "public/burststatplot.html": {
-        "previousModTime": 1460600252778,
-        "modified": 1460600252778,
+        "previousModTime": 1460615625286,
+        "modified": 1460615625286,
         "seen": true,
         "name": "public/burststatplot.html"
       },
       "public/index.html": {
-        "previousModTime": 1460607409410,
-        "modified": 1460607409410,
+        "previousModTime": 1460618747090,
+        "modified": 1460618747090,
         "seen": true,
         "name": "public/index.html"
       },
@@ -273,20 +273,20 @@
         "name": "xdk/project-info.json"
       },
       "main.js": {
-        "previousModTime": 1460610680358,
-        "modified": 1460610680358,
+        "previousModTime": 1460619224994,
+        "modified": 1460619224994,
         "seen": true,
         "name": "main.js"
       },
       ".gitignore": {
-        "previousModTime": 1460599656130,
-        "modified": 1460599656130,
+        "previousModTime": 1460612715366,
+        "modified": 1460612715366,
         "seen": true,
         "name": ".gitignore"
       },
       "cp2root/etc/systemd/system/logMFD1.service": {
-        "previousModTime": 1460531704837,
-        "modified": 1460531704837,
+        "previousModTime": 1460620457542,
+        "modified": 1460620457542,
         "seen": true,
         "name": "cp2root/etc/systemd/system/logMFD1.service"
       },
@@ -303,8 +303,8 @@
         "name": "cp2root/etc/systemd/system/rotlog.timer"
       },
       "cp2root/usr/bin/rotate_datalog.sh": {
-        "previousModTime": 1460580960950,
-        "modified": 1460580960950,
+        "previousModTime": 1460649063562,
+        "modified": 1460649063562,
         "seen": true,
         "name": "cp2root/usr/bin/rotate_datalog.sh"
       },
@@ -520,8 +520,8 @@
       }
     },
     "boardFileStatus": {
-      "main.js": {
-        "previousModTime": 1460610682110
+      "cp2root/usr/bin/rotate_datalog.sh": {
+        "previousModTime": 1460649071541
       }
     }
   }

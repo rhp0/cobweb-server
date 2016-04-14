@@ -8,7 +8,7 @@ systemctl stop logMFD1.service
 systemctl start logMFD1.service
 
 #eliminate partial records and remove framing brackets
-grep ^[[].*[]]$ /var/volatile/tmplog |tr -d [] > $logdir/$datestr.log
+grep ^[[].*[]][[:cntrl:]]*$ /var/volatile/tmplog |tr -d [] > $logdir/$datestr.log
 
 #sta column headings are N	min	Q1	median	Q3	max	mean	sd	  
 echo -n -e $secstr '\t' >> $summdir/col1stats.txt
