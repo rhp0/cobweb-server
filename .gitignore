@@ -7,3 +7,7 @@
 /public/ftp/datalogs/
 /public/ftp/summary/
 /cp2root/var/volatile/datalog
+/public/ftp/summary/col1stats.txt
+/public/ftp/summary/col1.stats
+/public/ftp/summary/col2.txt
+/node_modules/

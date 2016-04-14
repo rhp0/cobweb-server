@@ -16,26 +16,25 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function(){
         // Initialize Flot data points
         var totalPoints = 300;
         var res1 = [];
         var res2 = [];
         function getInitData(res) {
             // zip the generated y values with the x values
-            for (var i = 0; i < totalPoints; ++i){
-                res.push([i, 0]);
-            }
+            for (i=0;i<totalPoints;i++) { res[i]=[i,Number.NaN] }
             return res;
         }
+
+    $(document).ready(function(){
         var plot1 = $.plot($("#placeholder1"), [ getInitData(res1) ],
                            {series: {shadowSize: 0},
                             //     yaxis: {min: null, max: null},
-                            xaxis: {show: false}});
+                            xaxis: {show: false, min: 0, max: 300}});
         var plot2 = $.plot($("#placeholder2"), [ getInitData(res2) ],
                            {series: {shadowSize: 0},
                             //     yaxis: {min: -2000, max: 200},
-                            xaxis: {show: false}});
+                            xaxis: {show: false, min: 0, max: 300}});
 
         //Get the URL to hand into the connect call
         var http = location.protocol;
@@ -85,9 +84,10 @@
             });
             
         });
+    $("#chchoice1").change(function(){getInitData(res1)});
+    $("#chchoice2").change(function(){getInitData(res2)});
 
     });
-
 </script>
 </head>
 
@@ -142,8 +142,7 @@
             <option>19:Im(I)</option>
         </select>: <span id="value2"></span><br/>
         <div id="placeholder2" style="width:600px;height:300px;"></div><br/>
-        <a href="/ftp/summary" target="_blank"> Download summary stats for each channel </a><br/>
-        <a href="/ftp/datalogs" target="_blank"> Download logfiles </a><br/>
+        <a href="/ftp" target="_blank"> Download data </a><br/>
         <a href="burststatplot.html" target="_blank"> Plot summary statistics as a timeseries</a><br/>
     </div>
 </body>
