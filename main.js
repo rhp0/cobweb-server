@@ -39,9 +39,7 @@ tail.on("error", function(error) {
    io.sockets.on('connection', function (socket) {
        // If socket.io receives message from the client browser then
        // this call back will be executed.
-       socket.on('message', function (msg) {
-           console.log(msg);
-       });
+       //socket.on('message', function (msg) { console.log(msg); });
        // If a web browser disconnects from Socket.IO then this callback is called.
        socket.on('disconnect', function () {
            console.log('disconnected');
