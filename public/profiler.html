@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Profiler</title>
+    <link rel="stylesheet" href="profiler.css"/>
+    <!--    -->
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="javascripts/client-server.js"></script>
+
+</head>
+<body>
+    <div class="title">Profiler Console</div>
+    <div class="container">
+        <span class="sub-title">Hydraulic Pump Status</span>
+        <div id="led-container" class="off"><span>OFF</span></div>
+        <div id="led-link-container"><a id="up-link">Toggle UP</a><br><a id="down-link">Toggle DOWN</a></div>
+    </div>
+    <div class="container">
+        <span class="sub-title">Air Pump Status</span>
+        <div id="air-container" class="off"><span>OFF</span></div>
+        <div id="air-link-container"><a id="air-link">Toggle state</a></div>
+    </div>
+    <script src="profiler.js"></script>
+</body>
+</html>

@@ -23,36 +23,38 @@ motorStdby.dir(mraa.DIR_OUT);
 var motorAstate = 0; //int to hold the state of motorA
 var motorBstate = 0; //int to hold the state of motorB
 
-var express    = require('express');
 var serveIndex = require('serve-index');
-var http = require('http');
 var path = require('path');
-var bodyParser      = require("body-parser");
-var methodOverride  = require("method-override");
-var io = require('socket.io').listen(8000); // server listens for socket.io communication at port 8000
-//  io.set('log level', 1); // disables debugging. this is optional. you may remove it if desired.
-
-
+var express = require('express');
 var app = express();
+var http = require('http');
+var server = http.Server(app);
+var io = require('socket.io')(server);
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/ftp', serveIndex(path.join(__dirname,'public/ftp'), {'icons': true, 'view': 'details'}));
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
-//app.use(bodyParser());
-app.use(methodOverride());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/ftp', serveIndex(path.join(__dirname,'public/ftp'), {'icons': true}));
+
+app.get('/', function(req, res){
+  res.sendFile('/index.html');
+});
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+
+//var bodyParser      = require("body-parser");
+//var methodOverride  = require("method-override");
+////app.use(bodyParser());
+//app.use(methodOverride());
+
 //// development only
 //if ('development' == app.get('env')) {
 //  app.use(express.errorHandler());
 //}
-app.get('/profiler', function(req, res) {
-    //Join all arguments together and normalize the resulting path.
-    res.sendFile(path.join(__dirname + '/profiler', 'index.html'));
-});
-//Allow use of files in client folder
-app.use(express.static(__dirname + '/profiler'));
-app.use('/profiler', express.static(__dirname + '/profiler'));
 
-var server = http.createServer(app);
+
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
@@ -66,9 +68,9 @@ tail.on("error", function(error) {
   console.log('nodetailERROR: ', error);
 });
 
+
 //Socket.io Event handlers
 io.on('connection', function(socket) {
-    console.log("\n user is connected");
     console.log('a user connected: ');
     io.emit('user connect');
 

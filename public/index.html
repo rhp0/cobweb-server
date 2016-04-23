@@ -11,7 +11,7 @@
 <!--[if lte IE 8]><script type="text/javascript" src="javascripts/excanvas.min.js"></script><![endif]-->
 <script type="text/javascript" src="javascripts/jquery.min.js"></script>
 <script type="text/javascript" src="javascripts/jquery.flot.min.js"></script>
-<script type="text/javascript" src="javascripts/socket.io.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="javascripts/client-server.js"></script>
 
 
@@ -40,10 +40,10 @@
         var http = location.protocol;
         var slashes = http.concat("//");
         var host = slashes.concat(window.location.hostname);
-        var hostport = host.concat(":8000");
+        var hostport = host.concat(":5000");
 
         //var socket = io.connect('http://192.168.1.8:8000');
-        var socket = io.connect(hostport);
+        var socket = io();//.connect(hostport);
         socket.on('connect', function () {
             socket.on('message', function (msg) {
                 var chch1=document.getElementById("chchoice1").selectedIndex;
@@ -82,7 +82,7 @@
                 //$( "#progressbar" ).progressbar({
                 //     value: val
             });
-            
+
         });
     $("#chchoice1").change(function(){getInitData(res1)});
     $("#chchoice2").change(function(){getInitData(res2)});
@@ -144,6 +144,7 @@
         <div id="placeholder2" style="width:600px;height:300px;"></div><br/>
         <a href="/ftp" target="_blank"> Download data </a><br/>
         <a href="burststatplot.html" target="_blank"> Plot summary statistics as a timeseries</a><br/>
+        <a href="profiler.html" target="_blank"> Profiler Console</a><br/>
     </div>
 </body>
 </html>
