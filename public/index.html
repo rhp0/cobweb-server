@@ -16,78 +16,78 @@
 
 
 <script type="text/javascript">
-        // Initialize Flot data points
-        var totalPoints = 300;
-        var res1 = [];
-        var res2 = [];
-        function getInitData(res) {
-            // zip the generated y values with the x values
-            for (i=0;i<totalPoints;i++) { res[i]=[i,Number.NaN] }
-            return res;
-        }
+// Initialize Flot data points
+var totalPoints = 300;
+var res1 = [];
+var res2 = [];
+function getInitData(res) {
+    // zip the generated y values with the x values
+    for (i=0;i<totalPoints;i++) { res[i]=[i,Number.NaN] }
+    return res;
+}
 
-    $(document).ready(function(){
-        var plot1 = $.plot($("#placeholder1"), [ getInitData(res1) ],
-                           {series: {shadowSize: 0},
-                            //     yaxis: {min: null, max: null},
-                            xaxis: {show: false, min: 0, max: 300}});
-        var plot2 = $.plot($("#placeholder2"), [ getInitData(res2) ],
-                           {series: {shadowSize: 0},
-                            //     yaxis: {min: -2000, max: 200},
-                            xaxis: {show: false, min: 0, max: 300}});
+$(document).ready(function(){
+    var plot1 = $.plot($("#placeholder1"), [ getInitData(res1) ],
+                       {series: {shadowSize: 0},
+                        //     yaxis: {min: null, max: null},
+                        xaxis: {show: false, min: 0, max: 300}});
+    var plot2 = $.plot($("#placeholder2"), [ getInitData(res2) ],
+                       {series: {shadowSize: 0},
+                        //     yaxis: {min: -2000, max: 200},
+                        xaxis: {show: false, min: 0, max: 300}});
 
-        //Get the URL to hand into the connect call
-        var http = location.protocol;
-        var slashes = http.concat("//");
-        var host = slashes.concat(window.location.hostname);
-        var hostport = host.concat(":5000");
+    //Get the URL to hand into the connect call
+    var http = location.protocol;
+    var slashes = http.concat("//");
+    var host = slashes.concat(window.location.hostname);
+    var hostport = host.concat(":5000");
 
-        //var socket = io.connect('http://192.168.1.8:8000');
-        var socket = io();//.connect(hostport);
-        socket.on('connect', function () {
-            socket.on('message', function (msg) {
-                var chch1=document.getElementById("chchoice1").selectedIndex;
-                var chch2=document.getElementById("chchoice2").selectedIndex;
-                // Convert value to integer
-                //var val = ((parseInt(msg) / 1023)*100);
-                var vals = msg.substring(msg.indexOf('[') + 1,msg.indexOf(']') - 1).split(',');
-                // update value spans
-                $('#message').html(msg);
-                $('#host').html(hostport);
-                $('#value1').html(vals[chch1]);
-                $('#value2').html(vals[chch2]);
+    //var socket = io.connect('http://192.168.1.8:8000');
+    var socket = io();//.connect(hostport);
+    socket.on('connect', function () {
+        socket.on('message', function (msg) {
+            var chch1=document.getElementById("chchoice1").selectedIndex;
+            var chch2=document.getElementById("chchoice2").selectedIndex;
+            // Convert value to integer
+            //var val = ((parseInt(msg) / 1023)*100);
+            var vals = msg.substring(msg.indexOf('[') + 1,msg.indexOf(']') - 1).split(',');
+            // update value spans
+            $('#message').html(msg);
+            $('#host').html(hostport);
+            $('#value1').html(vals[chch1]);
+            $('#value2').html(vals[chch2]);
 
-                // Push new value to Flot Plot
-                res1.push([totalPoints, parseFloat(vals[chch1])]); // push on the end side
-                res1.shift(); // remove first value to maintain 300 points
-                // reinitialize the x axis data points to 0 to 299.
-                for (i=0;i<totalPoints;i++) { res1[i][0] = i; }
-                // Redraw the plot
-                plot1.setData([ res1 ]);
-                plot1.setupGrid();
-                plot1.draw();
+            // Push new value to Flot Plot
+            res1.push([totalPoints, parseFloat(vals[chch1])]); // push on the end side
+            res1.shift(); // remove first value to maintain 300 points
+            // reinitialize the x axis data points to 0 to 299.
+            for (i=0;i<totalPoints;i++) { res1[i][0] = i; }
+            // Redraw the plot
+            plot1.setData([ res1 ]);
+            plot1.setupGrid();
+            plot1.draw();
 
 
-                // Push new value to Flot Plot XXX
-                res2.push([totalPoints, parseFloat(vals[chch2])]); // push on the end side
-                res2.shift(); // remove first value to maintain 300 points
-                // reinitialize the x axis data points to 0 to 299.
-                for (i=0;i<totalPoints;i++) { res2[i][0] = i; }
-                // Redraw the plot
-                plot2.setData([ res2 ]);
-                plot2.setupGrid();
-                plot2.draw();
+            // Push new value to Flot Plot XXX
+            res2.push([totalPoints, parseFloat(vals[chch2])]); // push on the end side
+            res2.shift(); // remove first value to maintain 300 points
+            // reinitialize the x axis data points to 0 to 299.
+            for (i=0;i<totalPoints;i++) { res2[i][0] = i; }
+            // Redraw the plot
+            plot2.setData([ res2 ]);
+            plot2.setupGrid();
+            plot2.draw();
 
-                // Update JQuery UI progress bar.
-                //$( "#progressbar" ).progressbar({
-                //     value: val
-            });
-
+            // Update JQuery UI progress bar.
+            //$( "#progressbar" ).progressbar({
+            //     value: val
         });
+
+    });
     $("#chchoice1").change(function(){getInitData(res1)});
     $("#chchoice2").change(function(){getInitData(res2)});
 
-    });
+});
 </script>
 </head>
 

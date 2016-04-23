@@ -67,31 +67,62 @@ socket.on('toggle air', function(msg) {
 });
 
 
-//socket.on('connected users', function(msg) {
-//    $('#user-container').html("");
-//    for(var i = 0; i < msg.length; i++) {
-//        //console.log(msg[i]+" )msg[i] == userId( "+userId);
-//        if(msg[i] == userId)
-//            $('#user-container').append($("<div id='" + msg[i] + "' class='my-circle'><span>"+msg[i]+"</span></div>"));
-//        else
-//            $('#user-container').append($("<div id='" + msg[i] + "' class='user-circle'><span>"+msg[i]+"</span></div>"));
-//    }
-//});
-
-//socket.on('user connect', function(msg) {
-//    if(userId === "user"){
-//        console.log("Client side userId: "+msg);
-//        userId = msg;
-//    }
-//});
-//
-//socket.on('user disconnect', function(msg) {
-//    console.log("user disconnect: " + msg);
-//    var element = '#'+msg;
-//    console.log(element)
-//    $(element).remove();
-//});
-
 window.onunload = function(e) {
     socket.emit("user disconnect", userId);
 };
+
+
+
+// Initialize Flot data points
+var totalPoints = 300;
+var r = [];
+var g = [];
+var b = [];
+var c = [];
+function getInitData(res) {
+    for (i=0;i<totalPoints;i++) res[i]=[Number.NaN,Number.NaN];
+    return res;
+}
+
+//$(document).ready(function(){
+    var plot = $.plot($("#placeholder1"), [
+        {color: '#FF0000', data: getInitData(r)},
+        {color: '#00FF00', data: getInitData(g)},
+        {color: '#0000FF', data: getInitData(b)},
+        {color: '#808080', data: getInitData(c)}
+    ],
+    {
+        series: {shadowSize: 0},
+                        //     yaxis: {min: null, max: null},
+                        //xaxis: { min: 0, max: 300}
+    });
+
+ //   socket.on('connect', function () {
+        socket.on('message', function (msg) {
+            var vals = msg.substring(msg.indexOf('[') + 1,msg.indexOf(']') - 1).split(',');
+            console.log(vals[3] +' ' + vals[5]);
+             // Push new value to Flot Plot
+            var d=parseFloat(vals[3]); //3 is armang, 4 is pressure
+            r.push([d, parseFloat(vals[5])]); // push on the end side
+            r.shift(); // remove first value to maintain 300 points
+            g.push([d, parseFloat(vals[6])]); // push on the end side
+            g.shift(); // remove first value to maintain 300 points
+            b.push([d, parseFloat(vals[7])]); // push on the end side
+            b.shift(); // remove first value to maintain 300 points
+            c.push([d, parseFloat(vals[8])]); // push on the end side
+            c.shift(); // remove first value to maintain 300 points
+            // Redraw the plot
+            plot.setData([
+                {color: '#FF0000', data: r},
+                {color: '#00FF00', data: g},
+                {color: '#0000FF', data: b},
+                {color: '#808080', data: c}
+            ]);
+            plot.setupGrid();
+            plot.draw();
+
+
+        });
+
+
+
