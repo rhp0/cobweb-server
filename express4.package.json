@@ -1,0 +1,40 @@
+{
+  "name": "cobweb",
+  "version": "0.0.1",
+  "description": "aquaculture buoy webserver",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "body-parser": "^1.5.2",
+    "errorhandler": "^1.1.1",
+    "express": "^4.8.0",
+    "express-session": "^1.7.2",
+    "jade": "^1.5.0",
+    "method-override": "^2.1.2",
+    "morgan": "^1.2.2",
+    "multer": "^0.1.3",
+    "serve-favicon": "^2.0.1",
+    "ejs": "^0.7.2",
+    "serve-index": "^1.7.1",
+    "socket.io": "^0.9.17",
+    "tail": "^0.4.0"
+  },
+
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rhp0/cobweb-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rhp0/cobweb-server/issues"
+  },
+  "homepage": "https://github.com/rhp0/cobweb-server"
+}

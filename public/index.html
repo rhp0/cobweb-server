@@ -11,82 +11,83 @@
 <!--[if lte IE 8]><script type="text/javascript" src="javascripts/excanvas.min.js"></script><![endif]-->
 <script type="text/javascript" src="javascripts/jquery.min.js"></script>
 <script type="text/javascript" src="javascripts/jquery.flot.min.js"></script>
-<script type="text/javascript" src="javascripts/socket.io.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="javascripts/client-server.js"></script>
 
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        // Initialize Flot data points
-        var totalPoints = 300;
-        var res1 = [];
-        var res2 = [];
-        function getInitData(res) {
-            // zip the generated y values with the x values
-            for (var i = 0; i < totalPoints; ++i){
-                res.push([i, 0]);
-            }
-            return res;
-        }
-        var plot1 = $.plot($("#placeholder1"), [ getInitData(res1) ],
-                           {series: {shadowSize: 0},
-                            //     yaxis: {min: null, max: null},
-                            xaxis: {show: false}});
-        var plot2 = $.plot($("#placeholder2"), [ getInitData(res2) ],
-                           {series: {shadowSize: 0},
-                            //     yaxis: {min: -2000, max: 200},
-                            xaxis: {show: false}});
+// Initialize Flot data points
+var totalPoints = 300;
+var res1 = [];
+var res2 = [];
+function getInitData(res) {
+    // zip the generated y values with the x values
+    for (i=0;i<totalPoints;i++) { res[i]=[i,Number.NaN] }
+    return res;
+}
 
-        //Get the URL to hand into the connect call
-        var http = location.protocol;
-        var slashes = http.concat("//");
-        var host = slashes.concat(window.location.hostname);
-        var hostport = host.concat(":8000");
+$(document).ready(function(){
+    var plot1 = $.plot($("#placeholder1"), [ getInitData(res1) ],
+                       {series: {shadowSize: 0},
+                        //     yaxis: {min: null, max: null},
+                        xaxis: {show: false, min: 0, max: 300}});
+    var plot2 = $.plot($("#placeholder2"), [ getInitData(res2) ],
+                       {series: {shadowSize: 0},
+                        //     yaxis: {min: -2000, max: 200},
+                        xaxis: {show: false, min: 0, max: 300}});
 
-        //var socket = io.connect('http://192.168.1.8:8000');
-        var socket = io.connect(hostport);
-        socket.on('connect', function () {
-            socket.on('message', function (msg) {
-                var chch1=document.getElementById("chchoice1").selectedIndex;
-                var chch2=document.getElementById("chchoice2").selectedIndex;
-                // Convert value to integer
-                //var val = ((parseInt(msg) / 1023)*100);
-                var vals = msg.substring(msg.indexOf('[') + 1,msg.indexOf(']') - 1).split('\t');
-                // update value spans
-                $('#message').html(msg);
-                $('#host').html(hostport);
-                $('#value1').html(vals[chch1]);
-                $('#value2').html(vals[chch2]);
+    //Get the URL to hand into the connect call
+    var http = location.protocol;
+    var slashes = http.concat("//");
+    var host = slashes.concat(window.location.hostname);
+    var hostport = host.concat(":5000");
 
-                // Push new value to Flot Plot
-                res1.push([totalPoints, vals[chch1]]); // push on the end side
-                res1.shift(); // remove first value to maintain 300 points
-                // reinitialize the x axis data points to 0 to 299.
-                for (i=0;i<totalPoints;i++) { res1[i][0] = i; }
-                // Redraw the plot
-                plot1.setData([ res1 ]);
-                plot1.setupGrid();
-                plot1.draw();
+    //var socket = io.connect('http://192.168.1.8:8000');
+    var socket = io();//.connect(hostport);
+    socket.on('connect', function () {
+        socket.on('message', function (msg) {
+            var chch1=document.getElementById("chchoice1").selectedIndex;
+            var chch2=document.getElementById("chchoice2").selectedIndex;
+            // Convert value to integer
+            //var val = ((parseInt(msg) / 1023)*100);
+            var vals = msg.substring(msg.indexOf('[') + 1,msg.indexOf(']') - 1).split(',');
+            // update value spans
+            $('#message').html(msg);
+            $('#host').html(hostport);
+            $('#value1').html(vals[chch1]);
+            $('#value2').html(vals[chch2]);
+
+            // Push new value to Flot Plot
+            res1.push([totalPoints, parseFloat(vals[chch1])]); // push on the end side
+            res1.shift(); // remove first value to maintain 300 points
+            // reinitialize the x axis data points to 0 to 299.
+            for (i=0;i<totalPoints;i++) { res1[i][0] = i; }
+            // Redraw the plot
+            plot1.setData([ res1 ]);
+            plot1.setupGrid();
+            plot1.draw();
 
 
-                // Push new value to Flot Plot XXX
-                res2.push([totalPoints, vals[chch2]]); // push on the end side
-                res2.shift(); // remove first value to maintain 300 points
-                // reinitialize the x axis data points to 0 to 299.
-                for (i=0;i<totalPoints;i++) { res2[i][0] = i; }
-                // Redraw the plot
-                plot2.setData([ res2 ]);
-                plot2.setupGrid();
-                plot2.draw();
+            // Push new value to Flot Plot XXX
+            res2.push([totalPoints, parseFloat(vals[chch2])]); // push on the end side
+            res2.shift(); // remove first value to maintain 300 points
+            // reinitialize the x axis data points to 0 to 299.
+            for (i=0;i<totalPoints;i++) { res2[i][0] = i; }
+            // Redraw the plot
+            plot2.setData([ res2 ]);
+            plot2.setupGrid();
+            plot2.draw();
 
-                // Update JQuery UI progress bar.
-                //$( "#progressbar" ).progressbar({
-                //     value: val
-            });
+            // Update JQuery UI progress bar.
+            //$( "#progressbar" ).progressbar({
+            //     value: val
         });
 
     });
+    $("#chchoice1").change(function(){getInitData(res1)});
+    $("#chchoice2").change(function(){getInitData(res2)});
 
+});
 </script>
 </head>
 
@@ -97,27 +98,53 @@
         host: <span id="host"></span><br/>
         Channel
         <select id="chchoice1" >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
+            <option>1:msec</option>
+            <option>2:battV</option>
+            <option>3:battI</option>
+            <option>4:armAng</option>
+            <option>5:P kPa</option>
+            <option>6:red</option>
+            <option>7:green</option>
+            <option>8:blue</option>
+            <option>9:clear</option>
+            <option>10:Temp</option>
+            <option>11:Fluor</option>
+            <option>12:Re(I/V)</option>
+            <option>13:Im(I/V)</option>
+            <option>14:Re(off)</option>
+            <option>15:Im(off)r</option>
+            <option>16:Re(V)</option>
+            <option>17:Im(V)</option>
+            <option>18:Re(I)</option>
+            <option>19:Im(I)</option>
         </select>: <span id="value1"></span><br/>
         <div id="placeholder1" style="width:600px;height:300px;"></div><br/>
         Channel
         <select id="chchoice2" >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
+            <option>1:msec</option>
+            <option>2:battV</option>
+            <option>3:battI</option>
+            <option>4:armAng</option>
+            <option>5:P kPa</option>
+            <option>6:red</option>
+            <option>7:green</option>
+            <option>8:blue</option>
+            <option>9:clear</option>
+            <option>10:Temp</option>
+            <option>11:Fluor</option>
+            <option>12:Re(I/V)</option>
+            <option>13:Im(I/V)</option>
+            <option>14:Re(off)</option>
+            <option>15:Im(off)r</option>
+            <option>16:Re(V)</option>
+            <option>17:Im(V)</option>
+            <option>18:Re(I)</option>
+            <option>19:Im(I)</option>
         </select>: <span id="value2"></span><br/>
         <div id="placeholder2" style="width:600px;height:300px;"></div><br/>
-        <a href="/ftp/summary" target="_blank"> Download summary stats for each channel </a><br/>
-        <a href="/ftp/datalogs" target="_blank"> Download logfiles </a><br/>
+        <a href="/ftp" target="_blank"> Download data </a><br/>
         <a href="burststatplot.html" target="_blank"> Plot summary statistics as a timeseries</a><br/>
+        <a href="profiler.html" target="_blank"> Profiler Console</a><br/>
     </div>
 </body>
 </html>

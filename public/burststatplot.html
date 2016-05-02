@@ -14,7 +14,7 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function(){plotTimeSeries('col1stats.txt')});
+    $(document).ready(function(){plotTimeSeries('col2stats.txt')});
 
     function plotTimeSeries(filename) {
         var seriesOptions = [];
@@ -32,12 +32,12 @@
             for(var i=0;i<nrow;i++)
             {
                 var t= parseFloat(d[i][0]) * 1000; //first csv col is time in sec, but we need msec
-                dmin.push([t, parseFloat(d[i][2])]); //second csv col (number of records) is not plotted
-                dq25.push([t,parseFloat(d[i][3])]);
-                dmed.push([t,parseFloat(d[i][4])]);
-                dq75.push([t,parseFloat(d[i][5])]);
-                dmax.push([t,parseFloat(d[i][6])]);
-                dmean.push([t,parseFloat(d[i][7])]);
+                dmin.push([t,parseFloat($.trim(d[i][2]))]); //second csv col (number of records) is not plotted
+                dq25.push([t,parseFloat($.trim(d[i][3]))]);
+                dmed.push([t,parseFloat($.trim(d[i][4]))]);
+                dq75.push([t,parseFloat($.trim(d[i][5]))]);
+                dmax.push([t,parseFloat($.trim(d[i][6]))]);
+                dmean.push([t,parseFloat($.trim(d[i][7]))]);
             }
             seriesOptions[5]={name: 'mean', data: dmean, dashStyle: 'Solid', color: '#000000'};
             seriesOptions[0]={name: 'max', data: dmax, dashStyle: 'Dot', color: '#00CC00'};
@@ -81,7 +81,7 @@
                     //yAxis: {floor: null} ,
                     tooltip: {
                         pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
-                        //valueDecimals: 2
+                        valueDecimals: 5
                     },
 
 
@@ -107,6 +107,19 @@
             <option>col4stats.txt</option>
             <option>col5stats.txt</option>
             <option>col6stats.txt</option>
+            <option>col7stats.txt</option>
+            <option>col8stats.txt</option>
+            <option>col9stats.txt</option>
+            <option>col10stats.txt</option>
+            <option>col11stats.txt</option>
+            <option>col12stats.txt</option>
+            <option>col13stats.txt</option>
+            <option>col14stats.txt</option>
+            <option>col15stats.txt</option>
+            <option>col16stats.txt</option>
+            <option>col17stats.txt</option>
+            <option>col18stats.txt</option>
+            <option>col19stats.txt</option>
         </select><br/>
         <div id="container" style="width:100%; height:500px;"></div>
         <span id='csvtest'></span>

@@ -1,0 +1,12 @@
+[Unit]
+Description= log ttyMFD1 to /var/volatile/datalog
+
+[Service]
+Type=simple
+ExecStartPre=/bin/stty raw -F /dev/ttyMFD1 57600 
+ExecStart=/bin/dd if=/dev/ttyMFD1 of=/var/volatile/datalog
+
+
+[Install]
+WantedBy=multi-user.target
+
