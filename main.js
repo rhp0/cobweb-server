@@ -34,7 +34,6 @@ var io = require('socket.io')(server);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/ftp', serveIndex(path.join(__dirname,'public/ftp'), {'icons': true, 'view': 'details'}));
 app.set('port', process.env.PORT || 5000);
-app.set('view engine', 'ejs');
 
 app.get('/', function(req, res){
   res.sendFile('/index.html');
