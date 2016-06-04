@@ -151,6 +151,6 @@ io.on('connection', function(socket) {
 
 tail.on("line", function(data) {
  io.sockets.emit('message', data);
-  console.log('msg:' + data);
+  //console.log('msg:' + data);
 });
 
