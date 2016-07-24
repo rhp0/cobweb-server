@@ -45,6 +45,12 @@ $(document).ready(function(){
     //var socket = io.connect('http://192.168.1.8:8000');
     var socket = io();//.connect(hostport);
     socket.on('connect', function () {
+
+        socket.on('time', function(data) {
+                $('#servertime').html(data.time);
+        });
+
+
         socket.on('message', function (msg) {
             var chch1=document.getElementById("chchoice1").selectedIndex;
             var chch2=document.getElementById("chchoice2").selectedIndex;
@@ -94,6 +100,7 @@ $(document).ready(function(){
 
 <body>
     <div role="main">
+        COB time: <span id="servertime"></span><br/>
         Latest Values: <span id="message"></span><br/>
         host: <span id="host"></span><br/>
         Channel

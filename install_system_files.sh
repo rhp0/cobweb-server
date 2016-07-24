@@ -6,7 +6,17 @@ systemctl start logMFD1
 systemctl enable rotlog.timer #makes a link in timers.target.wants to .timer unit
 systemctl start rotlog.timer
 
+hwclock --systohc --utc
+
+
 cd /home/root/sta
-./configure
-make
+sh ./configure
+make -B
 make install
+
+systemctl start hostapd
+systemctl enable hostapd
+
+
+
+chmod -R 755 /home/root/.node_app_slot/public/ftp

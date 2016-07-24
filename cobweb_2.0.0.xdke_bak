@@ -1,0 +1,564 @@
+{
+  "project": {
+    "projectSettingsVersion": "2.0.0",
+    "initialAutoPluginCount": 0,
+    "currentBuildConfiguration": "Android",
+    "projectFiles": {},
+    "projectDirectories": {}
+  },
+  "iot-tab": {
+    "fileStatus": {
+      "cobweb.xdk": {
+        "previousModTime": 1459547810480,
+        "modified": 1459547810480,
+        "seen": true,
+        "name": "cobweb.xdk"
+      },
+      "cobweb.xdke": {
+        "previousModTime": 1468409303757,
+        "modified": 1468409303757,
+        "seen": true,
+        "name": "cobweb.xdke"
+      },
+      "index.html~": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "index.html~"
+      },
+      "npm-debug.log": {
+        "previousModTime": 1437765197029,
+        "modified": 1437765197029,
+        "seen": true,
+        "name": "npm-debug.log"
+      },
+      "originalserverexample.js": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "originalserverexample.js"
+      },
+      "package.json": {
+        "previousModTime": 1468409319809,
+        "modified": 1468409319809,
+        "seen": true,
+        "name": "package.json"
+      },
+      "server2.js~": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "server2.js~"
+      },
+      "server.js": {
+        "previousModTime": 1437772498449,
+        "modified": 1437772498449,
+        "seen": true,
+        "name": "server.js"
+      },
+      "server.js~": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "server.js~"
+      },
+      "test": {
+        "previousModTime": 1437708202694,
+        "modified": 1437708202694,
+        "seen": true,
+        "name": "test"
+      },
+      "public/burststatplot.html": {
+        "previousModTime": 1461433471156,
+        "modified": 1461433471156,
+        "seen": true,
+        "name": "public/burststatplot.html"
+      },
+      "public/index.html": {
+        "previousModTime": 1461444156844,
+        "modified": 1461444156844,
+        "seen": true,
+        "name": "public/index.html"
+      },
+      "public/index.html~": {
+        "previousModTime": 1437408009000,
+        "modified": 1437408009000,
+        "seen": true,
+        "name": "public/index.html~"
+      },
+      "public/test.csv": {
+        "previousModTime": 1437801929093,
+        "modified": 1437801929093,
+        "seen": true,
+        "name": "public/test.csv"
+      },
+      "public/ftp/datalogs/20150724192000.log": {
+        "previousModTime": 1437765600000,
+        "modified": 1437765600000,
+        "seen": true,
+        "name": "public/ftp/datalogs/20150724192000.log"
+      },
+      "public/ftp/datalogs/20150724193000.log": {
+        "previousModTime": 1437766200000,
+        "modified": 1437766200000,
+        "seen": true,
+        "name": "public/ftp/datalogs/20150724193000.log"
+      },
+      "public/ftp/datalogs/20150724194000.log": {
+        "previousModTime": 1437766800000,
+        "modified": 1437766800000,
+        "seen": true,
+        "name": "public/ftp/datalogs/20150724194000.log"
+      },
+      "public/ftp/datalogs/20150724195000.log": {
+        "previousModTime": 1437767400000,
+        "modified": 1437767400000,
+        "seen": true,
+        "name": "public/ftp/datalogs/20150724195000.log"
+      },
+      "public/ftp/datalogs/20150724200000.log": {
+        "previousModTime": 1437768000000,
+        "modified": 1437768000000,
+        "seen": true,
+        "name": "public/ftp/datalogs/20150724200000.log"
+      },
+      "public/ftp/summary/col1.stats": {
+        "previousModTime": 1437969600000,
+        "modified": 1437969600000,
+        "seen": true,
+        "name": "public/ftp/summary/col1.stats"
+      },
+      "public/ftp/summary/col1.stats~": {
+        "previousModTime": 1437801196921,
+        "modified": 1437801196921,
+        "seen": true,
+        "name": "public/ftp/summary/col1.stats~"
+      },
+      "public/ftp/summary/col1stats.txt": {
+        "previousModTime": 1437768600000,
+        "modified": 1437768600000,
+        "seen": true,
+        "name": "public/ftp/summary/col1stats.txt"
+      },
+      "public/ftp/summary/col2stats.txt": {
+        "previousModTime": 1437969600000,
+        "modified": 1437969600000,
+        "seen": true,
+        "name": "public/ftp/summary/col2stats.txt"
+      },
+      "public/ftp/summary/col2.txt": {
+        "previousModTime": 1437768600000,
+        "modified": 1437768600000,
+        "seen": true,
+        "name": "public/ftp/summary/col2.txt"
+      },
+      "public/ftp/summary/col3stats.txt": {
+        "previousModTime": 1437969600000,
+        "modified": 1437969600000,
+        "seen": true,
+        "name": "public/ftp/summary/col3stats.txt"
+      },
+      "public/ftp/summary/col4stats.txt": {
+        "previousModTime": 1437969600000,
+        "modified": 1437969600000,
+        "seen": true,
+        "name": "public/ftp/summary/col4stats.txt"
+      },
+      "public/ftp/summary/col5stats.txt": {
+        "previousModTime": 1437969600000,
+        "modified": 1437969600000,
+        "seen": true,
+        "name": "public/ftp/summary/col5stats.txt"
+      },
+      "public/ftp/summary/col6stats.txt": {
+        "previousModTime": 1437969600000,
+        "modified": 1437969600000,
+        "seen": true,
+        "name": "public/ftp/summary/col6stats.txt"
+      },
+      "public/ftp/summary/col7stats.txt": {
+        "previousModTime": 1437969600000,
+        "modified": 1437969600000,
+        "seen": true,
+        "name": "public/ftp/summary/col7stats.txt"
+      },
+      "public/ftp/summary/test.csv~": {
+        "previousModTime": 1437802458701,
+        "modified": 1437802458701,
+        "seen": true,
+        "name": "public/ftp/summary/test.csv~"
+      },
+      "public/javascripts/client-server.js": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "public/javascripts/client-server.js"
+      },
+      "public/javascripts/excanvas.min.js": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "public/javascripts/excanvas.min.js"
+      },
+      "public/javascripts/highcharts-custom.js": {
+        "previousModTime": 1437799206097,
+        "modified": 1437799206097,
+        "seen": true,
+        "name": "public/javascripts/highcharts-custom.js"
+      },
+      "public/javascripts/highcharts.js": {
+        "previousModTime": 1437774258229,
+        "modified": 1437774258229,
+        "seen": true,
+        "name": "public/javascripts/highcharts.js"
+      },
+      "public/javascripts/highstock.js": {
+        "previousModTime": 1437797319373,
+        "modified": 1437797319373,
+        "seen": true,
+        "name": "public/javascripts/highstock.js"
+      },
+      "public/javascripts/jquery.flot.min.js": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "public/javascripts/jquery.flot.min.js"
+      },
+      "public/javascripts/jquery.min.js": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "public/javascripts/jquery.min.js"
+      },
+      "public/javascripts/socket.io.js": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "public/javascripts/socket.io.js"
+      },
+      "public/stylesheets/base.css": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "public/stylesheets/base.css"
+      },
+      "public/stylesheets/chart-modules.css": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "public/stylesheets/chart-modules.css"
+      },
+      "public/stylesheets/pure-min.css": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "public/stylesheets/pure-min.css"
+      },
+      "views/index.jade": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "views/index.jade"
+      },
+      "views/layout.jade": {
+        "previousModTime": 1436064953000,
+        "modified": 1436064953000,
+        "seen": true,
+        "name": "views/layout.jade"
+      },
+      "xdk/project-info.json": {
+        "previousModTime": 1459548859160,
+        "modified": 1459548859160,
+        "seen": true,
+        "name": "xdk/project-info.json"
+      },
+      "main.js": {
+        "previousModTime": 1468408502193,
+        "modified": 1468408502193,
+        "seen": true,
+        "name": "main.js"
+      },
+      ".gitignore": {
+        "previousModTime": 1460652568646,
+        "modified": 1460652568646,
+        "seen": true,
+        "name": ".gitignore"
+      },
+      "cp2root/etc/systemd/system/logMFD1.service": {
+        "previousModTime": 1460620457542,
+        "modified": 1460620457542,
+        "seen": true,
+        "name": "cp2root/etc/systemd/system/logMFD1.service"
+      },
+      "cp2root/etc/systemd/system/rotlog.service": {
+        "previousModTime": 1460494542341,
+        "modified": 1460494542341,
+        "seen": true,
+        "name": "cp2root/etc/systemd/system/rotlog.service"
+      },
+      "cp2root/etc/systemd/system/rotlog.timer": {
+        "previousModTime": 1460494542365,
+        "modified": 1460494542365,
+        "seen": true,
+        "name": "cp2root/etc/systemd/system/rotlog.timer"
+      },
+      "cp2root/usr/bin/rotate_datalog.sh": {
+        "previousModTime": 1460649200950,
+        "modified": 1460649200950,
+        "seen": true,
+        "name": "cp2root/usr/bin/rotate_datalog.sh"
+      },
+      "cp2root/var/volatile/datalog": {
+        "previousModTime": 1460491193101,
+        "modified": 1460491193101,
+        "seen": true,
+        "name": "cp2root/var/volatile/datalog"
+      },
+      "cp2root/home/root/sta/aclocal.m4": {
+        "previousModTime": 1437318287578,
+        "modified": 1437318287578,
+        "seen": true,
+        "name": "cp2root/home/root/sta/aclocal.m4"
+      },
+      "cp2root/home/root/sta/AUTHOR": {
+        "previousModTime": 1437318239662,
+        "modified": 1437318239662,
+        "seen": true,
+        "name": "cp2root/home/root/sta/AUTHOR"
+      },
+      "cp2root/home/root/sta/autogen.sh": {
+        "previousModTime": 1437318239662,
+        "modified": 1437318239662,
+        "seen": true,
+        "name": "cp2root/home/root/sta/autogen.sh"
+      },
+      "cp2root/home/root/sta/config.log": {
+        "previousModTime": 1437318291018,
+        "modified": 1437318291018,
+        "seen": true,
+        "name": "cp2root/home/root/sta/config.log"
+      },
+      "cp2root/home/root/sta/config.status": {
+        "previousModTime": 1437318290906,
+        "modified": 1437318290906,
+        "seen": true,
+        "name": "cp2root/home/root/sta/config.status"
+      },
+      "cp2root/home/root/sta/configure": {
+        "previousModTime": 1437318288018,
+        "modified": 1437318288018,
+        "seen": true,
+        "name": "cp2root/home/root/sta/configure"
+      },
+      "cp2root/home/root/sta/configure.ac": {
+        "previousModTime": 1437318239662,
+        "modified": 1437318239662,
+        "seen": true,
+        "name": "cp2root/home/root/sta/configure.ac"
+      },
+      "cp2root/home/root/sta/depcomp": {
+        "previousModTime": 1437318288406,
+        "modified": 1437318288406,
+        "seen": true,
+        "name": "cp2root/home/root/sta/depcomp"
+      },
+      "cp2root/home/root/sta/.gitignore": {
+        "previousModTime": 1437318239662,
+        "modified": 1437318239662,
+        "seen": true,
+        "name": "cp2root/home/root/sta/.gitignore"
+      },
+      "cp2root/home/root/sta/install-sh": {
+        "previousModTime": 1437318288354,
+        "modified": 1437318288354,
+        "seen": true,
+        "name": "cp2root/home/root/sta/install-sh"
+      },
+      "cp2root/home/root/sta/LICENCE": {
+        "previousModTime": 1437318239662,
+        "modified": 1437318239662,
+        "seen": true,
+        "name": "cp2root/home/root/sta/LICENCE"
+      },
+      "cp2root/home/root/sta/Makefile": {
+        "previousModTime": 1437318290962,
+        "modified": 1437318290962,
+        "seen": true,
+        "name": "cp2root/home/root/sta/Makefile"
+      },
+      "cp2root/home/root/sta/Makefile.am": {
+        "previousModTime": 1437318239662,
+        "modified": 1437318239662,
+        "seen": true,
+        "name": "cp2root/home/root/sta/Makefile.am"
+      },
+      "cp2root/home/root/sta/Makefile.in": {
+        "previousModTime": 1437318288430,
+        "modified": 1437318288430,
+        "seen": true,
+        "name": "cp2root/home/root/sta/Makefile.in"
+      },
+      "cp2root/home/root/sta/missing": {
+        "previousModTime": 1437318288354,
+        "modified": 1437318288354,
+        "seen": true,
+        "name": "cp2root/home/root/sta/missing"
+      },
+      "cp2root/home/root/sta/README.md": {
+        "previousModTime": 1437318239662,
+        "modified": 1437318239662,
+        "seen": true,
+        "name": "cp2root/home/root/sta/README.md"
+      },
+      "cp2root/home/root/sta/sta": {
+        "previousModTime": 1437947958961,
+        "modified": 1437947958961,
+        "seen": true,
+        "name": "cp2root/home/root/sta/sta"
+      },
+      "cp2root/home/root/sta/autom4te.cache/output.0": {
+        "previousModTime": 1437318287550,
+        "modified": 1437318287550,
+        "seen": true,
+        "name": "cp2root/home/root/sta/autom4te.cache/output.0"
+      },
+      "cp2root/home/root/sta/autom4te.cache/output.1": {
+        "previousModTime": 1437318287950,
+        "modified": 1437318287950,
+        "seen": true,
+        "name": "cp2root/home/root/sta/autom4te.cache/output.1"
+      },
+      "cp2root/home/root/sta/autom4te.cache/requests": {
+        "previousModTime": 1437318288330,
+        "modified": 1437318288330,
+        "seen": true,
+        "name": "cp2root/home/root/sta/autom4te.cache/requests"
+      },
+      "cp2root/home/root/sta/autom4te.cache/traces.0": {
+        "previousModTime": 1437318287550,
+        "modified": 1437318287550,
+        "seen": true,
+        "name": "cp2root/home/root/sta/autom4te.cache/traces.0"
+      },
+      "cp2root/home/root/sta/autom4te.cache/traces.1": {
+        "previousModTime": 1437318287950,
+        "modified": 1437318287950,
+        "seen": true,
+        "name": "cp2root/home/root/sta/autom4te.cache/traces.1"
+      },
+      "cp2root/home/root/sta/examples/create_example_asc.pl": {
+        "previousModTime": 1437318239662,
+        "modified": 1437318239662,
+        "seen": true,
+        "name": "cp2root/home/root/sta/examples/create_example_asc.pl"
+      },
+      "cp2root/home/root/sta/examples/create_example_rand.pl": {
+        "previousModTime": 1437318239662,
+        "modified": 1437318239662,
+        "seen": true,
+        "name": "cp2root/home/root/sta/examples/create_example_rand.pl"
+      },
+      "cp2root/home/root/sta/examples/time_sta.sh": {
+        "previousModTime": 1437318239662,
+        "modified": 1437318239662,
+        "seen": true,
+        "name": "cp2root/home/root/sta/examples/time_sta.sh"
+      },
+      "cp2root/home/root/sta/examples/time_st.sh": {
+        "previousModTime": 1437318239662,
+        "modified": 1437318239662,
+        "seen": true,
+        "name": "cp2root/home/root/sta/examples/time_st.sh"
+      },
+      "cp2root/home/root/sta/src/.dirstamp": {
+        "previousModTime": 1437318291026,
+        "modified": 1437318291026,
+        "seen": true,
+        "name": "cp2root/home/root/sta/src/.dirstamp"
+      },
+      "cp2root/home/root/sta/src/sta.cpp": {
+        "previousModTime": 1437947938277,
+        "modified": 1437947938277,
+        "seen": true,
+        "name": "cp2root/home/root/sta/src/sta.cpp"
+      },
+      "cp2root/home/root/sta/src/sta.o": {
+        "previousModTime": 1437947958905,
+        "modified": 1437947958905,
+        "seen": true,
+        "name": "cp2root/home/root/sta/src/sta.o"
+      },
+      "cp2root/home/root/sta/src/.deps/.dirstamp": {
+        "previousModTime": 1437318291030,
+        "modified": 1437318291030,
+        "seen": true,
+        "name": "cp2root/home/root/sta/src/.deps/.dirstamp"
+      },
+      "cp2root/home/root/sta/src/.deps/sta.Po": {
+        "previousModTime": 1437947958741,
+        "modified": 1437947958741,
+        "seen": true,
+        "name": "cp2root/home/root/sta/src/.deps/sta.Po"
+      },
+      "express4.package.json": {
+        "previousModTime": 1460577664250,
+        "modified": 1460577664250,
+        "seen": true,
+        "name": "express4.package.json"
+      },
+      "install_system_files.sh": {
+        "previousModTime": 1460606549098,
+        "modified": 1460606549098,
+        "seen": true,
+        "name": "install_system_files.sh"
+      },
+      "install_system_files.sh~": {
+        "previousModTime": 1460579671000,
+        "modified": 1460579671000,
+        "seen": true,
+        "name": "install_system_files.sh~"
+      },
+      "public/profiler/index.css": {
+        "previousModTime": 1461388693188,
+        "modified": 1461388693188,
+        "seen": true,
+        "name": "public/profiler/index.css"
+      },
+      "public/profiler/index.html": {
+        "previousModTime": 1461393703912,
+        "modified": 1461393703912,
+        "seen": true,
+        "name": "public/profiler/index.html"
+      },
+      "public/profiler/index.js": {
+        "previousModTime": 1461393703912,
+        "modified": 1461393703912,
+        "seen": true,
+        "name": "public/profiler/index.js"
+      },
+      "public/profiler.css": {
+        "previousModTime": 1461433471652,
+        "modified": 1461433471652,
+        "seen": true,
+        "name": "public/profiler.css"
+      },
+      "public/profiler.html": {
+        "previousModTime": 1461444157004,
+        "modified": 1461444157004,
+        "seen": true,
+        "name": "public/profiler.html"
+      },
+      "public/profiler.js": {
+        "previousModTime": 1461444157476,
+        "modified": 1461444157476,
+        "seen": true,
+        "name": "public/profiler.js"
+      }
+    },
+    "boardFileStatus": {
+      "package.json": {
+        "previousModTime": 1468409350386
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 //NOTE PITFALL: not all of these gpio numbers will work if the edison is plugged into the intel arduino board
 //somehow, it knows what it is plugged into and throws "Illegal arguments for construction of _exports_Gpio"
+////
 
 var mraa = require('mraa'); //require mraa
 console.log('MRAA Version: ' + mraa.getVersion()); //write the mraa version to the Intel XDK console
@@ -153,4 +154,12 @@ tail.on("line", function(data) {
  io.sockets.emit('message', data);
   //console.log('msg:' + data);
 });
+
+// Send current time to all connected clients
+function sendTime() {
+    io.emit('time', { time: new Date().toJSON() });
+}
+
+// Send current time every 1 secs
+setInterval(sendTime, 1000);
 
